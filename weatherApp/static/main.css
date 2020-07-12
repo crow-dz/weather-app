@@ -1,8 +1,8 @@
 body {
-  background: url('https://cdn.pixabay.com/photo/2014/01/10/17/48/leaves-241701_960_720.jpg') no-repeat center center fixed;
+  background: url('https://cdn.pixabay.com/photo/2014/01/10/17/48/leaves-241701_960_720.jpg') center center fixed 100% 100% no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
-  height: %100;
+
 }
