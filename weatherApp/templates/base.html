@@ -1,0 +1,139 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- static files -->
+<link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<title>Weather App</title>
+</head>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+  <a class="navbar-brand" href="{% url 'site-home' %}">Weather App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="{% url 'site-home' %}">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="#" data-toggle="modal" data-target="#exampleModalCenter">About</a>
+    </div>
+  </div>
+  </div>
+</nav>
+<!---->
+<body>
+
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-8 mt-5 mb-5">
+<div class="card text-center shadow p-3 mb-5 bg-white rounded">
+  
+  <div class="card-body">
+ <!-- start form -->
+ <div class="row justify-content-around">
+  <div class="clo-4">
+    <form method="POST">
+
+      {% csrf_token %}
+
+    {{form|crispy}} 
+  {% if  feed %}
+  <button type="submit" class="btn btn-primary btn-lg mb-2" name="tab" data-container="body" data-toggle="popover" data-placement="right" data-content="{{feed}}.">Get Weather</button>
+  {% else %}
+   <button type="submit" class="btn btn-primary btn-lg mb-2" name="tab">Get Weather</button>
+  {% endif %}  
+</form>
+</div>
+</div>
+<!-- end form -->
+  </div>
+  </div>
+{% if name %}
+ <!-- Second card --> 
+    <div class="card text-left shadow p-3 mb-5 bg-white rounded">
+
+  <div class="card-body lead ">
+    <div class="row">
+    <div class="col-sm-4">
+    <h5 class="card-title ">{{name}}</h5>
+    <p class="card-text ">{{time}}</p>
+    <p class="card-text ">{{temp}}°C</p>
+
+    </div>
+    <div class="col-sm-4">
+      <!-- more info -->
+      <p class="card-text">{{weather}}</p>
+      <p class="card-text">Humidity : {{humidity}} %</p>
+      <p class="card-text">Wind Speed:{{wind}} km/s</p>
+      
+    </div>
+    <div class="col-sm-4">
+      <!-- img -->
+      <img class="" src="{{urli}}" width="100" height="100">
+    </div>
+    </div>
+  </div>
+ 
+</div>
+{% else %}
+{% endif %}
+</div>
+</div >
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">About</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body lead">
+      <p> Hello,I'm Oualid Senina .</p>
+      <p>I'm a web developer,And this is Django weather app.</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class=" bg-primary footer fixed-bottom">
+<div class="container">
+  <div class="row text-center">
+    <div class="col-sm-12 col-md-9">
+      <p class="lead mt-2 text-light">Copyright 2020 Weather app.</p>
+    </div>
+
+  </div>
+</div>
+</footer>
+<!-- Footer -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+      $(function () {
+        $('[data-toggle="popover"]').popover()
+          })
+    </script>
+  </body>
+</body>
+</html>
